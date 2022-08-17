@@ -313,7 +313,9 @@ appspec.yml을 아래와 같이 작성해주고, 프로젝트 루트 경로에 �
 
 마지막으로 EC2 Instance에 deploy가 잘 되었는지 확인해봅니다.
 
+<kbd>
 ![screensh](result-4.png)
+</kbd>
 
 EC2에도 정상적으로 deploy된 파일들이 있는 것이 확인이 되었습니다.
 
