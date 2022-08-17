@@ -26,7 +26,9 @@
 
 ## Github Actions workflows 작성하기
 
-![screensh](github-actions-1.png)
+<kbd>
+<img src="./github-actions-1.png" />
+</kbd>
 
 배포할 코드가 있는 Github Repository에 가서 Actions - `set up a workflow yourself`를 눌러줍니다.
 그리고 해당 파일에 아래와 같이 작성하여 `master`브랜치에 push 또는 pull request 이벤트가 발생하였을 때 Github Actions workflow가 잘 동작하는지 확인해봅니다.
@@ -69,7 +71,9 @@ jobs:
           run: npm run build
 ```
 
-![screensh](github-actions-2.png)
+<kbd>
+<img src="./github-actions-2.png" />
+</kbd>
 
 프로젝트 빌드까지 잘 되는 것을 확인 했습니다.
 
@@ -80,9 +84,15 @@ jobs:
 먼저 IAM에 접속 후 사용자 추가를 아래와 같이 해주세요.
 권한에는 AWSCodeDeployFullAccess, AmazonS3FullAccess 추가를 해주셔야합니다.
 
-![screensh](aws-iam-1.png)
-![screensh](aws-iam-2.png)
-![screensh](aws-iam-3.png)
+<kbd>
+<img src="./aws-iam-1.png" />
+</kbd>
+<kbd>
+<img src="./aws-iam-2.png" />
+</kbd>
+<kbd>
+<img src="./aws-iam-3.png" />
+</kbd>
 
 사용자를 만들면 꼭 csv파일을 다운로드 받아서 잘 보관해주세요.
 
@@ -90,19 +100,29 @@ jobs:
 
 CodeDeploy가 EC2에 대한 접근 권한이 필요하기 때문에 해당 역할을 만들어줍니다.
 
-![screensh](aws-iam-4.png)
-![screensh](aws-iam-5.png)
+<kbd>
+<img src="./aws-iam-4.png" />
+</kbd>
+<kbd>
+<img src="./aws-iam-5.png" />
+</kbd>
 
 다음은 S3에 올라가있는 코드를 다운받기 위한 S3 접근 권한이 필요하기 떄문에 해당 열할을 만들어줍니다.
 
-![screensh](aws-iam-6.png)
-![screensh](aws-iam-7.png)
+<kbd>
+<img src="./aws-iam-6.png" />
+</kbd>
+<kbd>
+<img src="./aws-iam-7.png" />
+</kbd>
 
 ### AWS S3 버킷 생성하기
 
 Github Actions에서 빌드가 완료된 코드를 업로드 하기 위한 S3 버킷을 만들어줍니다.
 
-![screensh](aws-s3-1.png)
+<kbd>
+<img src="./aws-s3-1.png" />
+</kbd>
 
 ### AWS EC2 인스턴스 생성하기
 
@@ -118,26 +138,38 @@ EC2 Instance를 생성해줍니다.
 
 Instance 생성을 완료했으면 아까 만들어둔 IAM 역할을 연결해줍니다.
 
-![screensh](aws-ec2-1.png)
-![screensh](aws-ec2-2.png)
+<kbd>
+<img src="./aws-ec2-1.png" />
+</kbd>
+<kbd>
+<img src="./aws-ec2-2.png" />
+</kbd>
 
 ### CodeDeploy 생성
 
 아래와 같이 CodeDeploy 애플리케이션을 생성해줍니다.
 
-![screensh](aws-codedeploy-1.png)
+<kbd>
+<img src="./aws-codedeploy-1.png" />
+</kbd>
 
 생성이 완료되었다면 배포그룹을 생성해줍니다.
 
-![screensh](aws-codedeploy-2.png)
+<kbd>
+<img src="./aws-codedeploy-2.png" />
+</kbd>
 
 배포그룹의 서비스 역할에는 아까 만들어둔 code deploy 역할을 선택해주시면됩니다.
 
-![screensh](aws-codedeploy-3.png)
+<kbd>
+<img src="./aws-codedeploy-3.png" />
+</kbd>
 
 EC2 인스턴스는 아까 만들어둔 EC2 Instance를 선택합니다.
 
-![screensh](aws-codedeploy-4.png)
+<kbd>
+<img src="./aws-codedeploy-4.png" />
+</kbd>
 
 ## EC2 Instance에 CodeDeploy Agent 설치하기
 
@@ -156,7 +188,9 @@ sudo aws configure
 
 `sudo aws configure` 명령어를 입력하면 아래와같이 정보를 입력하게 나오는데 아까 다운로드 받은 CSV 파일에 있는 값들을 넣어주면 됩니다.
 
-![screensh](aws-ec2-3.png)
+<kbd>
+<img src="./aws-ec2-3.png" />
+</kbd>
 
 값을 넣어주었다면, 아래 명령어로 CodeDeploy Agent를 설치합니다.
 
@@ -254,9 +288,15 @@ jobs:
 먼저, Workflow가 아까 만들어둔 S3와 CodeDeploy에 접근하기 위한 `AWS Configure`부분의 `aws-access-key-id`와 `aws-secret-access-key`를 등록하지 않았기에 이 부분에서 에러가 발생합니다.
 이 부분을 해결하기 위해 Github Repository > Settings -> Secrets -> Actions로 이동해 해당 부분을 등록해줍니다.
 
-![screensh](aws-codedeploy-5.png)
-![screensh](aws-codedeploy-6.png)
-![screensh](aws-codedeploy-7.png)
+<kbd>
+<img src="./aws-codedeploy-5.png" />
+</kbd>
+<kbd>
+<img src="./aws-codedeploy-6.png" />
+</kbd>
+<kbd>
+<img src="./aws-codedeploy-7.png" />
+</kbd>
 
 등록을 완료 후 다시 Workflow를 동작시키면 두번째 에러가 발생합니다.
 바로 `appspec.yml was not found` appspec.yml이 없다고 나오는데, 해당 파일은 CodeDeploy가 어떻게 행동할 것인지를 판단할 떄 사용됩니다.
@@ -296,24 +336,29 @@ appspec.yml을 아래와 같이 작성해주고, 프로젝트 루트 경로에 �
 
 먼저 `master` 브랜치에 push 이벤트가 발생하였으므로 Github Actions에서 위에서 작성한 Workflow가 실행된 것을 볼 수 있고, S3 Upload 및 Code Deploy모두 성공적으로 동작한 것을 볼 수 있습니다.
 
-![screensh](result-1.png)
+<kbd>
+<img src="./result-1.png" />
+</kbd>
 
 다음으로 S3에 빌드된 zip이 있는지 확인해 봅시다.
 
-![screensh](result-2.png)
+<kbd>
+<img src="./result-2.png" />
+</kbd>
 
 정상적으로 S3에 업로드 된 것이 확인이 됩니다.
 
 다음으로 CodeDeploy 배포 과정중에 문제가 없는지 확인해봅니다.
 
-![screensh](result-3.png)
+<kbd>
+<img src="./result-3.png" />
+</kbd>
 
 모든 이벤트가 성공적으로 동작이 된 것이 확인이 됩니다.
 만약 CodeDeploy 이벤트에서 에러가 발생하면 로그 파악 후 수정을 해주어야 합니다.
 
 마지막으로 EC2 Instance에 deploy가 잘 되었는지 확인해봅니다.
 
-![screensh](result-4.png)
 <kbd>
 <img src="./result-4.png"/>
 </kbd>
