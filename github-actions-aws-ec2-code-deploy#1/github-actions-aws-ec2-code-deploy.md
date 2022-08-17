@@ -18,7 +18,7 @@
 2. 1번의 이벤트가 발생했을 때 Github Actions로 코드를 빌드하고 AWS S3 Upload 및 AWS CodeDeploy를 통한 배포를 한다. (해당 과정에서 오류가 있거나, 테스트를 실패 하였을 시 배포가 되지 않습니다.)
 3. 미리 등록한 배포 스크립트를 실행하여 Docker로 배포한다.
 4. 3번 과정에서 이미 실행중인 Docker Container가 있다면 Docker Compose를 이용해서 Blue Green 배포를 한다.
-5. Nginx를 이용해 로드밸런서 및 SSL을 적용한다.ㅍ
+5. Nginx를 이용해 로드밸런서 및 SSL을 적용한다.
 
 이번 글에서는 2번 과정까지 진행해보겠습니다.
 
@@ -109,7 +109,7 @@ EC2 Instance를 생성해줍니다.
 - 보안그룹 : 22, 80, 443, 3001, 3002 Open
 
 설정으로 셋팅하였습니다.
-ㅍ
+
 Instance 생성을 완료했으면 아까 만들어둔 IAM 역할을 연결해줍니다.
 ![screensh](aws-ec2-1.png)
 ![screensh](aws-ec2-2.png)
