@@ -43,7 +43,7 @@ const nextConfig = {
 ### Layout
 
 Next.js 13 버전부터는 layout이 도입되었습니다.
-기존에는 아래와 같이 Layout 컴포넌트를 만들어서 사용을 많이 했습니다.
+기존에는 아래와 같이 Layout 컴포넌트를 만들어서 사용을 많이 했습니다.
 
 ```javascript
 // components/layout.tsx
